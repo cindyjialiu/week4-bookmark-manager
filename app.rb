@@ -1,13 +1,10 @@
 require 'sinatra/base'
+require './lib/link.rb'
 
 class Bookmark_manager < Sinatra::Base
   get '/' do
-    links = [
-              "http://www.google.co.uk/",
-              "http://www.wikipedia.org/",
-              "http://www.vogue.co.uk/"
-            ]
-    links.join
+    @links = Link.show_all
+    erb :index
   end
   run! if app_file == $0
 end
