@@ -1,11 +1,9 @@
+require 'pg'
+
 class Link
-
   def self.show_all
-     [
-      "http://www.google.co.uk/",
-      "http://www.wikipedia.org/",
-      "http://www.vogue.co.uk/"
-    ]
+    connection = PG.connect(dbname: 'bookmark_manager')
+    result = connection.exec("SELECT * FROM links")
+    result.map { |link| link['url'] }
   end
-
 end

@@ -2,8 +2,9 @@ feature 'viewing links' do
   scenario 'the user can see links' do
     visit('/')
 
-    expect(page).to have_content "http://www.google.co.uk/"
-    expect(page).to have_content "http://www.wikipedia.org/"
-    expect(page).to have_content "http://www.vogue.co.uk/"
+    expect(page).to have_content "http://makersacademy.com"
+    expect(page).to have_content "http://www.facebook.com"
+    expect(page).to have_content "http://www.google.com"
+    expect(page).to have_content "http://www.twitter.com"
   end
 end
