@@ -7,8 +7,8 @@ class Link
     result.map { |link| link['url'] }
   end
 
-  def self.create(url)
-    DatabaseConnection.query("INSERT INTO links (url) VALUES('#{url}')")
+  def self.create(options)
+    DatabaseConnection.query("INSERT INTO links (url) VALUES('#{options[:url]}')")
   end
 
 end
