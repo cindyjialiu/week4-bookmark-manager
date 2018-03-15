@@ -1,9 +1,15 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require './lib/link.rb'
-require './database_connection_setup'
+require 'uri'
 
 class Bookmark_manager < Sinatra::Base
+  register Sinatra::Flash
+  enable :sessions
+  DatabaseConnection.setup('bookmark_manager')
+
   get '/' do
+    @notice = flash[:notice]
     @links = Link.show_all
     erb :index
   end
@@ -13,7 +19,7 @@ class Bookmark_manager < Sinatra::Base
   end
 
   post '/create-new-link' do
-    Link.create(url = params['url'])
+    flash[:notice] = "You must submit a valid URL." unless Link.create(url: params['url'])
     redirect '/'
   end
 
