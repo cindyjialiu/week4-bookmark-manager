@@ -1,8 +1,13 @@
+
 <ul>
   <% @links.each do |link| %>
-  <li><%= link %></li>
+    <li id="link-<%= link.id %>">
+      <a href="<%= link.url %>">
+        <%= link.title %>
+      </a>
+    </li>
   <% end %>
 </ul>
-<a href='/add-a-new-link'>Add a new link</a>
 
-<p><%= @notice %></p>
+<a href='/add-a-new-link'>Add a new link</a>
+<%= styled_flash %>
