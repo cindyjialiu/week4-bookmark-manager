@@ -10,6 +10,7 @@ task :test_database_setup do
   connection.exec("INSERT INTO links VALUES(1, 'http://makersacademy.com', 'Makers Academy');")
   connection.exec("INSERT INTO links VALUES(2, 'http://www.google.com', 'Google');")
   connection.exec("INSERT INTO links VALUES(3, 'http://www.twitter.com', 'Twitter');")
+  #connection.exec("ALTER SEQUENCE links_id_seq RESTART WITH 1")
   connection.exec("SELECT setval('links_id_seq'::regclass, 10)")
 end
 

@@ -2,12 +2,17 @@
 <ul>
   <% @links.each do |link| %>
     <li id="link-<%= link.id %>">
-      <a href="<%= link.url %>">
+      <a href="<%= link.url %>" target="_blank">
         <%= link.title %>
       </a>
+      <form action="delete-link" method="post">
+        <input type="hidden" name="id" value="<%= link.id %>">
+        <input type="submit" value="Delete" />
+      </form>
     </li>
   <% end %>
 </ul>
 
-<a href='/add-a-new-link'>Add a new link</a>
-<%= styled_flash %>
+
+<a href="/add-a-new-link">Add a new link</a>
+<p><%= @notice %></p>

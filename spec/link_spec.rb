@@ -27,4 +27,14 @@ describe '.show_all' do
       expect(urls).not_to include 'not a real link'
     end
   end
+
+  describe '.delete' do
+    it 'deletes an existing link' do
+      Link.delete(1)
+
+      links = Link.show_all
+      urls = links.map(&:url)
+      expect(urls).not_to include 'http://www.makersacademy.com'
+    end
+  end
 end

@@ -19,6 +19,11 @@ class Link
     DatabaseConnection.query("INSERT INTO links (url, title) VALUES('#{options[:url]}', '#{options[:title]}')")
   end
 
+  def self.delete(id)
+    connection = PG.connect(dbname: 'bookmark_manager')
+    DatabaseConnection.query("DELETE FROM links WHERE id = #{id}")
+  end
+
   private
   def self.is_url?(url)
     url =~ /\A#{URI::regexp(['http', 'https'])}\z/
