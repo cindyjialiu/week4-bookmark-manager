@@ -20,8 +20,11 @@ class Link
   end
 
   def self.delete(id)
-    connection = PG.connect(dbname: 'bookmark_manager')
     DatabaseConnection.query("DELETE FROM links WHERE id = #{id}")
+  end
+
+  def self.update(id, options)
+    DatabaseConnection.query("UPDATE links SET url = '#{options[:url]}', title = '#{options[:title]}' WHERE id = '#{id}'")
   end
 
   private

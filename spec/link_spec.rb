@@ -37,4 +37,18 @@ describe '.show_all' do
       expect(urls).not_to include 'http://www.makersacademy.com'
     end
   end
+
+  describe '.update' do
+    it 'updates an existing link' do
+      Link.update(1, url: 'http://www.snakersacademy.com', title: 'Snakers Academy')
+
+      links = Link.show_all
+      urls = links.map(&:url)
+      titles = links.map(&:title)
+      expect(urls).not_to include "http://www.makersacademy.com"
+      expect(titles).not_to include "Makers Academy"
+      expect(urls).to include "http://www.snakersacademy.com"
+      expect(titles).to include "Snakers Academy"
+    end
+  end
 end
